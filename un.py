@@ -24,5 +24,14 @@ def workout(prof):
     return render_template('training.html', **params)
 
 
+@app.route('/list_prof/<list_mode>')
+def list_prof(list_mode):
+    professions = ['инженер-исследователь', 'пилот', 'строитель', 'экзобиолог', 'врач', 'инженер по терраформированию',
+                   'климатолог', 'специалист по радиационной защите', 'астрогеолог', 'гляциолог',
+                   'инженер жизнеобеспечения', 'метеоролог', 'оператор марсохода', 'киберинженер', 'штурман',
+                   'пилот дронов']
+    return render_template('profession.html', mode=list_mode, professions=professions)
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
