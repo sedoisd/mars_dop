@@ -52,9 +52,7 @@ def auto_answer():
 @app.route('/emergency_access_login', methods=['GET', 'POST'])
 def emergency_access_login():
     access = EmergencyAccess()
-
     if access.validate_on_submit():
-        print(1)
         return 'Процесс аутентификации'
     return render_template('emergency_access.html', title='Авторизация в аварийный доступ', form=access)
 
