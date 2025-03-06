@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for
+from classes import EmergencyAccess
 
 app = Flask(__name__)
 
@@ -37,15 +38,25 @@ def list_prof(list_mode):
 @app.route('/auto_answer')
 def auto_answer():
     params = {'title': 'Авто-форма',
-             'surname': 'Watny',
-             'name': 'Mark',
-             'education': 'Высшее',
-             'profession': 'Штурман',
-             'sex': 'male',
-             'motivation': 'Мечта застрять на Марсе',
-             'ready': 'True'
-             }
+              'surname': 'Watny',
+              'name': 'Mark',
+              'education': 'Высшее',
+              'profession': 'Штурман',
+              'sex': 'male',
+              'motivation': 'Мечта застрять на Марсе',
+              'ready': 'True'
+              }
     return render_template('auto_answer.html', params=params)
+
+
+@app.route('/emergency_access_login', methods=['GET', 'POST'])
+def emergency_access_login():
+    access = EmergencyAccess()
+
+    if access.validate_on_submit():
+        print(1)
+        return 'Процесс аутентификации'
+    return render_template('emergency_access.html', title='Авторизация в аварийный доступ', form=access)
 
 
 if __name__ == '__main__':
