@@ -68,5 +68,19 @@ def distribution():
     return render_template('distribution.html', staff_list=staff_list)
 
 
+@app.route('/table/<sex>/<age>')
+def table(sex, age):
+    url_image = 'image/adult_mars.png'
+    colors = {'female': {'child': '#ffa07a', 'adult': '#ff4500'}, 'male': {'child': '#b0c4de', 'adult': '#007ff0'}}
+    if int(age) < 21:
+        url_image = 'image/child_mars.png'
+        color = colors[sex]['child']
+    else:
+        color = colors[sex]['adult']
+
+    return render_template('table.html', url_image=url_for('static', filename=url_image),
+                           color=color)
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')

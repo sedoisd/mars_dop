@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Оформление каюты</h3>
+<table style="width:700px;height:300px;">
+    <tr>
+        <th>Цвет стен</th>
+        <th>Эмблема</th>
+    </tr>
+    <tr style="height: 100px;">
+        <td>
+            <div style="background:{{color}}; height: 100%;"> </div>
+        </td>
+        <td><img src="{{url_image}}"></td>
+    </tr>
+</table>
+{% endblock %}
