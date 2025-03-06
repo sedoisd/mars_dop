@@ -33,5 +33,20 @@ def list_prof(list_mode):
     return render_template('profession.html', mode=list_mode, professions=professions)
 
 
+@app.route('/answer')
+@app.route('/auto_answer')
+def auto_answer():
+    params = {'title': 'Авто-форма',
+             'surname': 'Watny',
+             'name': 'Mark',
+             'education': 'Высшее',
+             'profession': 'Штурман',
+             'sex': 'male',
+             'motivation': 'Мечта застрять на Марсе',
+             'ready': 'True'
+             }
+    return render_template('auto_answer.html', params=params)
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
