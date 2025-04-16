@@ -1,5 +1,8 @@
 import os
+import json
+import random
 from io import BytesIO
+from sqlite3.dbapi2 import paramstyle
 
 from PIL import Image
 from flask import Flask, render_template, url_for, request
@@ -85,6 +88,7 @@ def table(sex, age):
     return render_template('table.html', url_image=url_for('static', filename=url_image),
                            color=color)
 
+
 @app.route('/galery', methods=['GET', 'POST'])
 def galery():
     landscape_path = os.path.join('static', 'image', 'landscapes')
@@ -104,6 +108,14 @@ def galery():
         filenames = list(map(lambda x: os.path.join(landscape_path, x), os.listdir(landscape_path)))
         return render_template('galery.html', filenames=filenames)
 
+
+@app.route('/member')
+def member():
+    with open('templates/members.json', encoding="utf-8") as file:
+        json_data = json.load(file)
+        my_dict = random.choices(json_data)[0]
+        my_dict['image'] = os.path.join('static', 'image', 'avatars', my_dict['image'])
+    return render_template('member.html', params=my_dict)
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')

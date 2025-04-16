@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Иван",
+    "surname": "Петров",
+    "image": "mk.png",
+    "specialties": "врач, инженер жизнеобеспечения, климатолог"
+  },
+  {
+    "name": "Alice",
+    "surname": "Smith",
+    "image": "mk.png",
+    "specialties": "пилот дронов, киберинженер"
+  },
+  {
+    "name": "Дмитрий",
+    "surname": "Соколов",
+    "image": "mk.png",
+    "specialties": "астрогеолог, инженер по терраформированию"
+  },
+  {
+    "name": "Emily",
+    "surname": "Johnson",
+    "image": "mk.png",
+    "specialties": "пилот, штурман, специалист по радиационной защите"
+  },
+  {
+    "name": "Ольга",
+    "surname": "Смирнова",
+    "image": "mk.png",
+    "specialties": "метеоролог, экзобиолог"
+  }
+]
