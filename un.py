@@ -1,4 +1,8 @@
-from flask import Flask, render_template, url_for
+import os
+from io import BytesIO
+
+from PIL import Image
+from flask import Flask, render_template, url_for, request
 from classes import EmergencyAccess
 
 app = Flask(__name__)
@@ -80,6 +84,25 @@ def table(sex, age):
 
     return render_template('table.html', url_image=url_for('static', filename=url_image),
                            color=color)
+
+@app.route('/galery', methods=['GET', 'POST'])
+def galery():
+    landscape_path = os.path.join('static', 'image', 'landscapes')
+    filenames = list(map(lambda x: os.path.join(landscape_path, x), os.listdir(landscape_path)))
+    # print(filenames)
+    if request.method == 'GET':
+        return render_template('galery.html', filenames=filenames)
+    elif request.method == 'POST':
+        f = request.files.get('file')
+        if f:
+            data = f.read()
+            im = Image.open(BytesIO(data))
+            # im.show()
+            n = len(os.listdir(landscape_path)) + 1
+            im.save('static/image/landscapes/landsc_{n}.{im_format}'.format(im_format=im.format, n=n))
+        landscape_path = os.path.join('static', 'image', 'landscapes')
+        filenames = list(map(lambda x: os.path.join(landscape_path, x), os.listdir(landscape_path)))
+        return render_template('galery.html', filenames=filenames)
 
 
 if __name__ == '__main__':

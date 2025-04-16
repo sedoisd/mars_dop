@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 align="center">Пейзажи марса</h1>
+{% for filename in filenames %}
+<div align="center"><img src="{{ filename }}"></div>
+{% endfor %}
+<div>
+    <form class="login_form" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="photo">Приложите фотографию</label>
+            <input type="file" class="form-control-file" id="photo" name="file">
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+{% endblock %}
+
